@@ -7,6 +7,8 @@
 const factionPieEl = document.getElementById('factionPie');
 const playerPieEl = document.getElementById('playerPie');
 const gamesTableEl = document.getElementById('gamesTable');
+
+Chart.register(ChartDataLabels);
 /**
  * Functions to handle appending new content to /views/index.html
  */
@@ -49,7 +51,31 @@ const updateChart = function (apiResponse) {
         label: 'My First Dataset',
         data: labels.map((key) => factionWins[key]),
         backgroundColor: labels.map((key)=> factionColors[key]),
-        hoverOffset: 4
+        hoverOffset: 4,
+        datalabels: {
+          labels: {
+            name: {
+              align: 'top',
+              font: {size: 22, weight: 'bold'},
+              color: 'white',
+              formatter: function(value, ctx) {
+                console.log(ctx)
+                return ctx.active
+                  ? 'name'
+                  : ctx.chart.data.labels[ctx.dataIndex];
+              }
+            },
+            value: {
+              align: 'bottom',
+              backgroundColor: 'white',
+              borderColor: 'white',
+              borderWidth: 2,
+              borderRadius: 4,
+              padding: 4
+            }
+          }
+        }
+
       }]
     };
   new Chart(factionPieEl, {
@@ -61,12 +87,36 @@ const updateChart = function (apiResponse) {
         datasets: [{        
           label: 'My First Dataset',
           data:  ['Caleb','Eli','Eddie','Rubin'].map((key) => playerWins[key]),
-          hoverOffset: 4
+          hoverOffset: 4,
+          datalabels: {
+            labels: {
+              name: {
+                align: 'top',
+                font: {size: 22, weight: 'bold'},
+                color: 'white',
+                formatter: function(value, ctx) {
+                  console.log(ctx)
+                  return ctx.active
+                    ? 'name'
+                    : ctx.chart.data.labels[ctx.dataIndex];
+                }
+              },
+              value: {
+                align: 'bottom',
+                backgroundColor: 'white',
+                borderColor: 'white',
+                borderWidth: 2,
+                borderRadius: 4,
+                padding: 4
+              }
+            }
+          }
         }]
       };
   new Chart(playerPieEl, {
       type: 'pie',
-      data: data2
+      data:  data2,
+  
     });
 }
 
@@ -88,10 +138,8 @@ const updateTable = function (apiResponse) {
     const gameRow = tBody.insertRow()
     tableColumns.forEach((column, index)=>{
         const value = getStringOf(game.properties[column])
-        console.log(value)
         const fieldEl = gameRow.insertCell()
         fieldEl.appendChild(document.createTextNode(value))
-        console.log()
     });
   })
 }
@@ -111,6 +159,7 @@ const getStringOf = function (notionProperty) {
  * Attach submit event handlers to each form included in /views/index.html
  */
  document.addEventListener("DOMContentLoaded", async function(event) {
+
   const newDBResponse = await fetch("/stats", {
     method: "GET",
     headers: {
