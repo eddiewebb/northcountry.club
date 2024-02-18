@@ -16,15 +16,14 @@ app.get("/", function (request, response) {
 
 // load all game stats
 app.get("/stats", async function (request, response) {
-  const dbID = process.env.NOTION_DB_ID
+  const databaseId = process.env.NOTION_DB_ID
   const title = request.body.dbName
 
   try {
-    const newDb = await notion.databases.retrieve({ database_id: dbID })
-    response.json({ message: "success!", data: newDb })
-    Object.entries(newDB.properties).forEach(([propertyName, propertyValue]) => {
-      console.log(`${propertyName}: ${propertyValue.type}`);
+    const gamesResponse = await notion.databases.query({
+      database_id: databaseId
     });
+    response.json({ message: "success!", data: gamesResponse })
   } catch (error) {
     response.json({ message: "error", error })
   }
