@@ -8,6 +8,7 @@
     <meta name="description" content="Notion internal integration example" />
 
     <title>NCGC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
 
@@ -17,14 +18,30 @@
     <script src="/client.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1>North Country Game League</h1>
-    </header>
-
-    <main>
-      <div>
-        <canvas id="factionPie"></canvas>
+    <div class="container">
+      <div class="row mb-4">
+        <header>
+          <h1>North Country Game League</h1>
+        </header>
       </div>
-    </main>
+      <div class="row gx-5">
+        <div class="col">
+          <canvas id="factionPie"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="playerPie"></canvas>
+        </div>
+      </div>
+
+      <div class="row gx-5 mt-4">
+        <div class="col">
+          <table id="gamesTable"  class="table">
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
+  
 </html>
