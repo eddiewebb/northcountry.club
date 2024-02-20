@@ -141,7 +141,8 @@ const updateChart = function (apiResponse) {
           })
         })       
     };
-new Chart(combinedRadarEl, {
+
+  new Chart( combinedRadarEl, {
     type: 'radar',
     data:  data3,
     options: {
@@ -152,13 +153,13 @@ new Chart(combinedRadarEl, {
       },scales: {
         r: {
             min: -.5,
-            max: 4,
+            max: 2,
             ticks: {
               stepSize: 1
             }
         }
+      }
     }
-    },
 
   });
 }
