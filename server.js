@@ -13,9 +13,12 @@ app.use(express.json()) // for parsing application/json
 app.get("/", function (request, response) {
   response.sendFile(__dirname + "/views/index.html")
 })
+app.get("/tolg", function (request, response) {
+  response.sendFile(__dirname + "/views/tolg/index.html")
+})
 
 // load all game stats
-app.get("/stats", async function (request, response) {
+app.get("/tolg/stats", async function (request, response) {
   const databaseId = process.env.NOTION_DB_ID
   const title = request.body.dbName
 

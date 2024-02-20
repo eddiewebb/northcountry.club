@@ -155,20 +155,6 @@ const getStringOf = function (notionProperty) {
 
 }
 
-/**
- * Attach submit event handlers to each form included in /views/index.html
- */
- document.addEventListener("DOMContentLoaded", async function(event) {
 
-  const newDBResponse = await fetch("/stats", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  const newDBData = await newDBResponse.json()
-  updateChart(newDBData)
-  updateTable(newDBData)
-});
 
 
