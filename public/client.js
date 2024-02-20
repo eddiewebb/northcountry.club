@@ -50,8 +50,7 @@ const updateChart = function (apiResponse) {
   console.log(playerFactionWins);
   const data = {
     labels: labels,
-      datasets: [{        
-        label: 'My First Dataset',
+      datasets: [{ 
         data: labels.map((key) => factionWins[key]),
         backgroundColor: labels.map((key)=> factionColors[key]),
         hoverOffset: 4,
@@ -93,8 +92,7 @@ const updateChart = function (apiResponse) {
     });
   const data2 = {
       labels: players,
-        datasets: [{        
-          label: 'My First Dataset',
+        datasets: [{
           data: players.map((key) => playerWins[key]),
           hoverOffset: 4,
           datalabels: {
