@@ -148,7 +148,7 @@ const updateChart = function (apiResponse) {
     options: {
       plugins: {
           legend: {
-              display: false
+              display: true
           }
       },scales: {
         r: {
